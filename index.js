@@ -128,7 +128,8 @@ exports.homepage_events = functions.region("europe-west2").https.onRequest((_req
 });
 
 exports.get_new_by_id = functions.region("europe-west2").https.onRequest((request, response) => {
-  const db = firebaseAdmin.firestore().collection("events").doc(request.params.id);
+  console.log(request.body);
+  const db = firebaseAdmin.firestore().collection("articles").doc(request.body.id);
   db.get().then((doc) => {
     if (doc.exists) {
       response.json(doc.data());
