@@ -141,3 +141,37 @@ exports.get_new_by_id = functions.region("europe-west2").https.onRequest((reques
     response.sendStatus(404);
   });
 });
+
+exports.events = functions.region("europe-west2").https.onRequest((_request, response) => {
+  const db = firebaseAdmin.firestore().collection("events");
+  db.orderBy("lastupdate", "desc")
+      .get()
+      .then((snap) => {
+        const res = [];
+        snap.forEach((doc) => {
+          res.push(doc.data());
+        });
+        response.json(res);
+      })
+      .catch((err) => {
+        console.log(err);
+        response.json([]);
+      });
+});
+
+exports.rankings = functions.region("europe-west2").https.onRequest((_request, response) => {
+  const db = firebaseAdmin.firestore().collection("rankings");
+  db.orderBy("lastupdate", "desc")
+      .get()
+      .then((snap) => {
+        const res = [];
+        snap.forEach((doc) => {
+          res.push(doc.data());
+        });
+        response.json(res);
+      })
+      .catch((err) => {
+        console.log(err);
+        response.json([]);
+      });
+});
