@@ -3,7 +3,7 @@ const firebaseAdmin = require("firebase-admin");
 
 firebaseAdmin.initializeApp();
 
-exports.homepage_images = functions.region("europe-west2").https.onRequest((request, response) => {
+exports.homepage_images = functions.region("europe-west2").https.onRequest((_request, response) => {
   const db = firebaseAdmin.firestore().collection("homepage_images");
   db.orderBy("lastupdate", "desc")
       .get()
@@ -20,7 +20,7 @@ exports.homepage_images = functions.region("europe-west2").https.onRequest((requ
       });
 });
 
-exports.articles = functions.region("europe-west2").https.onRequest((request, response) => {
+exports.articles = functions.region("europe-west2").https.onRequest((_request, response) => {
   const db = firebaseAdmin.firestore().collection("articles");
   db.orderBy("lastupdate", "desc")
       .get()
@@ -37,7 +37,7 @@ exports.articles = functions.region("europe-west2").https.onRequest((request, re
       });
 });
 
-exports.events = functions.region("europe-west2").https.onRequest((request, response) => {
+exports.events = functions.region("europe-west2").https.onRequest((_request, response) => {
   const db = firebaseAdmin.firestore().collection("events");
   db.orderBy("lastupdate", "desc")
       .get()
@@ -54,7 +54,7 @@ exports.events = functions.region("europe-west2").https.onRequest((request, resp
       });
 });
 
-exports.social_videos = functions.region("europe-west2").https.onRequest((request, response) => {
+exports.social_videos = functions.region("europe-west2").https.onRequest((_request, response) => {
   const db = firebaseAdmin.firestore().collection("social_videos");
   db.orderBy("lastupdate", "desc")
       .get()
@@ -72,7 +72,7 @@ exports.social_videos = functions.region("europe-west2").https.onRequest((reques
 });
 
 exports.homepage_social_videos = functions.region("europe-west2").https.onRequest(
-    (request, response) => {
+    (_request, response) => {
       const db = firebaseAdmin.firestore().collection("social_videos");
       db.orderBy("lastupdate", "desc")
           .limit(4)
@@ -91,7 +91,7 @@ exports.homepage_social_videos = functions.region("europe-west2").https.onReques
     }
 );
 
-exports.homepage_articles = functions.region("europe-west2").https.onRequest((request, response) => {
+exports.homepage_articles = functions.region("europe-west2").https.onRequest((_request, response) => {
   const db = firebaseAdmin.firestore().collection("articles");
   db.orderBy("lastupdate", "desc")
       .limit(4)
@@ -109,7 +109,7 @@ exports.homepage_articles = functions.region("europe-west2").https.onRequest((re
       });
 });
 
-exports.homepage_events = functions.region("europe-west2").https.onRequest((request, response) => {
+exports.homepage_events = functions.region("europe-west2").https.onRequest((_request, response) => {
   const db = firebaseAdmin.firestore().collection("events");
   db.orderBy("lastupdate", "desc")
       .limit(4)

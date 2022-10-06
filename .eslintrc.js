@@ -1,16 +1,15 @@
 module.exports = {
+  root: true,
   env: {
     es6: true,
     node: true,
   },
-  extends: ["eslint:recommended", "google"],
-
-  ignorePatterns: [
-    "/lib/**/*", // Ignore built files.
+  extends: [
+    "eslint:recommended",
+    "google",
   ],
-  plugins: ["import"],
   rules: {
-    "quotes": ["error", "double"],
     "max-len": ["error", 120],
+    "quotes": ["error", "double"],
   },
 };
