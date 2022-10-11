@@ -175,3 +175,20 @@ exports.rankings = functions.region("europe-west2").https.onRequest((_request, r
         response.json([]);
       });
 });
+
+exports.familiar_sites = functions.region("europe-west2").https.onRequest((_request, response) => {
+  const db = firebaseAdmin.firestore().collection("familiar_sites");
+  db.orderBy("lastupdate", "desc")
+      .get()
+      .then((snap) => {
+        const res = [];
+        snap.forEach((doc) => {
+          res.push(doc.data());
+        });
+        response.json(res);
+      })
+      .catch((err) => {
+        console.log(err);
+        response.json([]);
+      });
+});
